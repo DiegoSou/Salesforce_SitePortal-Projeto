@@ -1,0 +1,45 @@
+<aura:component>
+    <!-- Atributos -->
+    <aura:attribute name="userType" type="String" />
+    <aura:attribute name="loading" type="Boolean"/>
+
+    <!-- Eventos -->
+    <aura:registerEvent name="backToPage" type="c:PGBackToEvent"/>
+
+    <!-- Componentes -->
+    <c:callService service="PortalUserLogin" aura:id="callServiceLogin"/>
+    <c:ToastComponent aura:id="toastComponent"/>
+
+    <!-- Spinner -->
+    <aura:if isTrue="{!v.loading}"><lightning:spinner alternativeText="Carregando" size="medium"/></aura:if>
+
+    <!-- Visualização -->
+    <div id="divPai">
+        <div id="bodyDocument">
+            <h1 id="loginName">Login do {!v.userType}</h1>
+            
+            <div id="dataInputs">
+                <label class="labels">Usuário</label>
+                <input name="username" type="text" id="usernameInput" placeholder="Digite seu nome de usuário" />
+                <div id="errorUsername"></div>
+                <br />
+                <label class="labels">Senha</label>
+                <input name="password" type="password" id="passwordInput" placeholder="Digite sua senha" />
+                <div id="errorPassword"></div>
+            </div>
+
+            <div id="divForgotPassword">
+                <p class="pShowPortal" onclick="{!c.showAnotherPortal}">Você é {! v.userType == 'candidato' ? 'mentor' : 'candidato'}?</p>
+                <p onclick="{!c.forgotPassword}" class="pForgotPassword">Esqueceu sua senha?</p>
+            </div>
+            <br />
+            <div id="buttons">
+                <lightning:button class="btnEntrar" onclick="{!c.verifyUser}" label="Login" aura:id="loginButton" />
+            </div>
+        </div>
+        
+        <div>
+            <img src="{!$Resource.LogoGauss2}"/>
+        </div>
+    </div>
+</aura:component>

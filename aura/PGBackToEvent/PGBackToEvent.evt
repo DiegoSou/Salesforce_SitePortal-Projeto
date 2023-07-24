@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="pageName" type="String"/>
+    <aura:attribute name="detail" type="Object"/>
+</aura:event>

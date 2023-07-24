@@ -1,0 +1,110 @@
+.THIS#divPaiInformations{
+    width: 100%; 
+    display: block;
+}
+
+.THIS #header{
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    background-color: white;
+}
+
+.THIS #txtAreaInfor{
+    margin: 0% 0% 0% 0.5%;
+    display: flex;
+    font-size: 23px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.THIS .page-section {
+    background-color: white;
+    padding: 1rem;
+}
+
+.THIS .titleCards{
+    font-size: 18px;
+    margin-top: 0rem;
+}
+
+.THIS .fieldsCandidate{
+    font-size: 15px;
+}
+
+.THIS .recordsCandidate{
+    font-size: 17px;
+    border-bottom: 1px solid #bbb;
+    color: black;
+}
+
+.THIS #itemLeft{
+    height: 110%;
+    border-radius: 6px;
+}
+
+.THIS #itemCenter{
+    height: 110%;
+    width: 58rem;
+    border-radius: 6px;
+    margin-left: -7%;
+    width: 107%;
+
+}
+
+.THIS #itemRight{
+    height: 110%;
+    border-radius: 6px;
+}
+
+.THIS #logoUser{
+    width: 30px;
+    height: 30px;
+    margin-top: 0.3rem;
+    margin-left: 0rem;
+    margin-bottom: 3rem;
+}
+
+.THIS #titleMessage{
+    margin-top: -4.9rem;
+    margin-bottom: -2.5rem;
+    font-size: 1.5rem;
+    margin-left: 2.8rem;
+}
+
+.THIS #divImgGauss{
+    margin: 4% 0% 0% 85%;
+}
+
+.THIS #imgGauss{
+    margin-left: 0.5rem;
+    height: 3rem;
+    margin-right: 1rem;
+}
+
+.THIS #divLogout{
+    margin: 0% -3% 0% 90%;
+}
+
+.THIS #divLogout:hover{
+    cursor: pointer;
+}
+
+.THIS #logoutButton:hover{
+    cursor: pointer;
+    background-color: rgb(153, 153, 208);
+}
+
+.THIS hr {
+    margin-top: 3rem;
+    margin-bottom: 0.7rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.THIS #logoutButton{
+    max-width: 100%;
+    height: 3rem;
+    width: 13.5rem;
+    margin-right: -7rem;
+    margin-left: -3rem;
+}

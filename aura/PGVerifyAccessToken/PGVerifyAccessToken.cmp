@@ -1,0 +1,50 @@
+<aura:component>
+    <!-- Atributos -->
+    <aura:attribute name="userId" type="String"/> 
+    <aura:attribute name="userName" type="String"/>
+    <aura:attribute name="userEmail" type="String"/>
+    <aura:attribute name="userPassword" type="String"/>
+    <aura:attribute name="userType" type="String"/>
+    <aura:attribute name="tokenType" type="String"/>
+    <aura:attribute name="loading" type="boolean" default="false"/>
+
+    <!-- Eventos -->
+    <aura:registerEvent name="backToPage" type="c:PGBackToEvent"/>
+    
+    <!-- Componentes -->
+    <c:ToastComponent aura:id="toastComponent"/>
+    <c:callService service="ValidatePortalUserToken" aura:id="callServiceValidade"/>
+
+    <!-- Spinner -->
+    <aura:if isTrue="{!v.loading}"><lightning:spinner alternativeText="Carregando" size="medium"/></aura:if>
+
+    <!-- Visualização -->
+    <div id="divPaiVerifyLogin">
+        <div>
+            <div id="parteB">
+                <div id="imgG">
+                    <lightning:icon onclick="{!c.backToLogin}" class="iconBack" iconName="action:back" size="small" alternativeText="Voltar ao login"/>
+                    <img src="{!$Resource.GaussCabecalho}" id="imgGauss"/>
+                </div>
+
+                <div id="cabecalho">
+                    <h1 id="title">Um código de acesso foi mandado ao seu email</h1>
+                    <br/>
+                    <p id="desc">Para prosseguir digite o código</p>
+                </div>
+
+                <div id="form">
+                    <input name="token" type="text" id="tokenCode" placeholder="Digite o código" />
+                    <div id="errortokenCode"></div>
+                    <div>
+                        <lightning:button onclick="{!c.verifyToken}" label="Ok"  title="sendBtn" class="btn"/>
+                    </div>
+                </div>
+
+                <div id="back">
+                    <lightning:button onclick="{!c.resendToken}" variant="base" label="Reenviar código" title="Enviar o código novamente" class="rodape"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

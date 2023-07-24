@@ -1,0 +1,13 @@
+<aura:component>
+    <!-- Attributes -->
+    <aura:attribute name="localInfo" type="Object" />
+
+    <!-- Handlers -->
+    <!-- inicialização -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!-- carregar outra página -->
+    <aura:handler name="backToPage" event="c:PGBackToEvent" action="{!c.backToPageEvent}"/>
+
+    <!-- Components -->
+    <c:PGLoadAnotherPage aura:id="loadAnotherPageComponent"/>
+</aura:component>	

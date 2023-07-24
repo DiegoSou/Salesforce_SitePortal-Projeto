@@ -1,0 +1,26 @@
+<apex:page >
+    <apex:includeLightning />
+    <div id="portalGauss"></div>
+
+    <style>
+        body
+        {
+            background-color: rgba(43, 35, 98, 0.85);
+            background-repeat: no-repeat;
+            background-position-x: 90%;
+            background-size: 600px 575px;
+        }
+    </style>
+
+    <script>
+        $Lightning.use("c:PortalGaussApp", function(){
+            $Lightning.createComponent
+            (
+                "c:PortalGaussMain", 
+                {},
+                "portalGauss", 
+                function(cmp) { console.log("Componente carregado."); }
+            );
+        });
+    </script>
+</apex:page>

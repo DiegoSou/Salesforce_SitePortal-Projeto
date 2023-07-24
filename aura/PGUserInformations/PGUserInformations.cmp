@@ -1,0 +1,101 @@
+<aura:component>
+    <!-- Atributos -->
+    <!-- To-do: trocar para objeto -->
+    <aura:attribute name="name" type="String" />
+    <aura:attribute name="email" type="String" />
+    <aura:attribute name="age" type="String" />
+    <aura:attribute name="birthday" type="String" />
+    <aura:attribute name="genre" type="String" />
+    <aura:attribute name="cellphone" type="String" />
+    <aura:attribute name="state" type="String" />
+    <aura:attribute name="city" type="String" />
+    <aura:attribute name="district" type="String" />
+    <aura:attribute name="enem" type="String" />
+    <aura:attribute name="noteComposition" type="String" />
+    <aura:attribute name="whishedCourse" type="String" />
+    <!-- Informações local storage -->
+    <aura:attribute name="userId" type="String"/>
+    <aura:attribute name="userEmail" type="String"/>
+    <aura:attribute name="userType" type="String"/>
+
+    <!-- Eventos -->
+    <aura:registerEvent name="backToPage" type="c:PGBackToEvent"/>
+
+    <!-- Componentes -->
+    <c:callService service="Account" aura:id="accountInfor"/>
+
+    <!-- Visualização -->
+    <div id="divPaiInformations">
+        <div id="divLayout">
+            <div id="header">
+                <div id="txtAreaInfor">
+                    <img id="imgGauss" src="{!$Resource.LogoGauss}"/>
+                </div>
+                <div id="divLogout" onclick="{!c.logoutUser}">
+                    <img id="logoutButton" src="{!$Resource.LogoutButton}"/>
+                </div>
+            </div>  
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:layout>
+
+                        <!-- INFORMAÇÔES PESSOAIS -->
+                        <lightning:layoutItem padding="around-small" flexibility="no-grow" size="{! v.userType == 'mentor' ? '6' : '4'}">
+                            <div class="page-section page-right" id="itemLeft">
+                                <img id="logoUser" src="{!$Resource.LogoUser}"/>
+                                <p id="titleMessage">Área de Informações do {!v.userType}</p>
+                                <hr />
+                                <p class="titleCards">Suas Informações Pessoais</p><br/>
+                                
+                                <p class="fieldsCandidate">Nome</p>
+                                    <p class="recordsCandidate">{!v.name}</p>
+                                <p class="fieldsCandidate">E-mail</p>
+                                    <p class="recordsCandidate">{!v.email}</p>
+                                <p class="fieldsCandidate">Idade</p>
+                                    <p class="recordsCandidate">{!v.age}</p>
+                                <p class="fieldsCandidate">Data de Nascimento</p>
+                                    <p class="recordsCandidate">{!v.birthday}</p>
+                                <p class="fieldsCandidate">Gênero</p>
+                                    <p class="recordsCandidate">{!v.genre}</p>
+                                <p class="fieldsCandidate">Número do Celular</p>
+                                    <p class="recordsCandidate">{!v.cellphone}</p>
+                            </div>
+                        </lightning:layoutItem>
+                        <!-- INFORMAÇÔES ENDEREÇO -->
+                        <lightning:layoutItem padding="around-small" flexibility="no-grow" size="{! v.userType == 'mentor' ? '6' : '4'}">
+                            <div class="page-section page-main" id="itemCenter">
+                                <hr />
+                                <p class="titleCards">Seu Endereço</p><br/>
+
+                                <p class="fieldsCandidate">Estado de Residência</p>
+                                    <p class="recordsCandidate">{!v.state}</p>
+                                <p class="fieldsCandidate">Cidade de Residência</p>
+                                    <p class="recordsCandidate">{!v.city}</p>
+                                <p class="fieldsCandidate">Bairro</p>
+                                    <p class="recordsCandidate">{!v.district}</p>
+                            </div>
+                        </lightning:layoutItem>
+
+                        <!-- INFORMAÇÔES DO CANDIDATO -->
+                        <aura:if isTrue="{! v.userType == 'candidato'}">
+                            <lightning:layoutItem padding="around-small" flexibility="no-grow" size="4">
+                                <div class="page-section page-right" id="itemRight">
+                                    <p class="titleCards">Resultado ENEM e Curso Desejado</p><br/>
+    
+                                    <p class="fieldsCandidate">Fez ENEM ano passado</p>
+                                        <p class="recordsCandidate">{!v.enem}</p>
+                                    <p class="fieldsCandidate">Nota da redação</p>
+                                        <p class="recordsCandidate">{!v.noteComposition}</p>
+                                    <p class="fieldsCandidate">Curso desejado</p>
+                                        <p class="recordsCandidate">{!v.whishedCourse}</p>
+                                </div>
+                            </lightning:layoutItem>
+                        </aura:if>
+
+                    </lightning:layout>
+                </lightning:layoutItem>
+            </lightning:layout>
+
+        </div>
+    </div>
+</aura:component>

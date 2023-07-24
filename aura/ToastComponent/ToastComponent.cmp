@@ -1,0 +1,36 @@
+<aura:component>
+    <aura:attribute name="showToast" type="boolean" default="false"/>
+    <aura:attribute name="typeToast" type="String"/>
+    <aura:attribute name="typeIcon" type="String"/>
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="repeatToast" type="boolean" default="true"/>
+
+    <aura:method name="showToastComponent" action="{!c.showToast}" access="public">
+        <aura:attribute name="typeParam" type="String"/>
+        <aura:attribute name="messageParam" type="String"/>
+        <aura:attribute name="time" type="decimal"/>
+    </aura:method>
+    <aura:method name="closeToastComponent" action="{!c.closeToast}" access="public"></aura:method>
+
+    <aura:if isTrue="{!v.showToast}">
+        <div id="divFather">
+            <div class="slds-notify_container slds-is-relative">
+                <div class="{!'slds-notify slds-notify_toast slds-theme_'+v.typeToast}" role="status">
+                    <span class="slds-assistive-text">{!v.typeToast}</span>
+                    <span class="{!'slds-icon_container slds-icon-utility-'+v.typeToast+' slds-m-right_small slds-no-flex slds-align-top'}" title="Description of icon when needed">
+                        <lightning:icon class="icons" iconName="{!v.typeIcon}" alternativeText="Error" title="Error" variant="inverse"/>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small slds-text-color_inverse">{!v.message}</h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close">
+                            <lightning:icon class="icons" onclick ="{!c.closeToast}" iconName="utility:close" alternativeText="Close" title="Close" variant="inverse"/>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>
