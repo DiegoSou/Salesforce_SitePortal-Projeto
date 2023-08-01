@@ -1,93 +1,92 @@
 ({
     //
-    // Caminhos que o usuário pode fazer
+    // Rotas
     //
-    // login
+
     isUserLoginPath : function(component, helper, params)
     {
-        const userLocalStorageInfo = helper.getLocalStorageData(params.userType, helper);
-        
+        if (params.userType !== 'mentor' && params.userType !== 'candidato') return;
+
+        const userLocalStorageInfo = helper.getLocalStorageData('portalInfo');
+
         if(userLocalStorageInfo !== undefined)
         {
-            helper.loadAnotherPage(component, 'userInformations', {userId: userLocalStorageInfo.userId, userEmail: userLocalStorageInfo.userEmail, userType: userLocalStorageInfo.userType});
+            helper.loadAnotherPage(component, 'PGUserInformations', {userId: userLocalStorageInfo.userId, userEmail: userLocalStorageInfo.userEmail, userType: userLocalStorageInfo.userType});
             
             return;
         }
 
-        helper.loadAnotherPage(component, 'userLogin', {userType : params.userType});
+        helper.loadAnotherPage(component, 'PGUserLogin', {userType : params.userType});
     },
 
-    // definir senha
     isDefinePasswordPath : function(component, helper, params)
     {
-        helper.loadAnotherPage(component, 'definePassword', {token: params.userToken, userName: params.userName, userType: params.userType});
+        helper.loadAnotherPage(component, 'PGUserDefinePassword', {token: params.userToken, userName: params.userName, userType: params.userType});
     },
 
-    // redefinir senha
-    isRedefinePasswordPath : function(component, helper, params)
-    {
-        helper.loadAnotherPage(component, 'definePassword', {token: params.userToken, userName: params.userName, userType: params.userType});
-    },
-
-    // caminho não definido
     isUndefinedPath : function(component, helper, params)
     {
-        window.location.href = window.location.origin + "/PortalGauss/?page=login";
+        window.location.href = window.location.origin + "/PortalGauss/?page=login&usr=candidato";
     },
 
     //
+    // Eventos
+    //
+
+    // Back to page
+
+    loadAnotherPage : function(component, pageName, attributes) 
+    {
+        component.find('loadAnotherPageComponent').loadCmp(pageName, attributes);
+    },
+
     // Local Storage
-    //
-    getLocalStorageData : function(userType, helper)
+
+    getLocalStorageData : function(key)
     {
-        let storageDataDev = helper.accessLocalStorageDev();
-        let storageDataProd = helper.accessLocalStorageProd();
-
-        console.log('string: ', JSON.stringify(window.localStorage));
-
-        if (storageDataDev)
-        {
-            return storageDataDev;
-        }
-
-        if (storageDataProd)
-        {
-            return storageDataProd;
-        }
-    },
-    accessLocalStorageDev : function()
-    {
-        let storageData;
-        const key = 'portalInfo';
-
-        if(window.localStorage[key])
-        {
-            storageData = JSON.parse(window.localStorage[key]);
-        }
-
-        return storageData
-    },
-    accessLocalStorageProd : function()
-    {
-        let storageData;
-        const key = 'LSSIndex:LOCAL{"namespace":"c"}';
-
-        if(window.localStorage[key])
-        {
-            const storageIndex = JSON.parse(window.localStorage[key]).portalInfo;
-
-            if (window.localStorage[storageIndex])
+        // acessar em dev
+        const storageDataDev = () => {
+            let storageData;
+    
+            if(window.localStorage[key])
             {
-                storageData = JSON.parse(window.localStorage[storageIndex]);
+                storageData = JSON.parse(window.localStorage[key]);
             }
-        }
+    
+            return storageData;
+        };
 
-        return storageData; 
+        // acessar em prod
+        const storageDataProd = () => {
+            let storageData;
+    
+            if(window.localStorage['LSSIndex:LOCAL{"namespace":"c"}'])
+            {
+                const storageIndex = JSON.parse(window.localStorage['LSSIndex:LOCAL{"namespace":"c"}'])[key];
+    
+                if (window.localStorage[storageIndex])
+                {
+                    storageData = JSON.parse(window.localStorage[storageIndex]);
+                }
+            }
+    
+            return storageData; 
+        }
+        
+        const dev = storageDataDev();
+        const prod = storageDataProd();
+
+        if (dev) return dev;
+        if (prod) return prod;
     },
 
-    //
-    // Outro
-    //
-
-    loadAnotherPage : function(component, pageName, attributes) {component.find('loadAnotherPageComponent').loadCmp(pageName, attributes);}
+    setLocalStorageData : function(key, value)
+    {
+        window.localStorage.setItem(key, JSON.stringify(value));
+    },
+    
+    clearLocalStorageData : function()
+    {
+        window.localStorage.clear();
+    }
 })

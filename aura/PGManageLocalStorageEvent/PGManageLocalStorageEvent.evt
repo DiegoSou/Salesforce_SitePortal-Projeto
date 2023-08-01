@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="key" type="String"/>
+    <aura:attribute name="data" type="Object"/>    
+</aura:event>

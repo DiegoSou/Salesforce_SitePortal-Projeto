@@ -2,7 +2,7 @@
 .THIS#divPaiVerifyLogin {
     background-position: center;
     background-color: #4b447a;
-    padding-top: 22%;
+    padding-top: 5%;
     color: rgb(0, 0, 0);
     height: 24rem;
     padding-bottom: 26%;
@@ -25,13 +25,16 @@
     text-align: center;
 }
 
+.THIS #forgotPasswordDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .THIS #parteB{
     background-color: #5954a4;
     width: 37rem;
     height: 37rem;
-    margin-left: 30.5%;
-    margin-top: -17%;
-    margin-bottom: -28%;
     padding-top: 1%;
     border-radius: 1rem;
 }

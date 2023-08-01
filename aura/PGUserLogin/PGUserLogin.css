@@ -5,26 +5,25 @@
 }
 
 .THIS #bodyDocument{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    margin: 10% 9% 0% 2%;
+    margin-top: 9%;
+    margin-right: 8%;
     padding: 4rem 6rem;
     background-color: rgb(213, 215, 255);
     border-radius: 1rem;
-    min-width: 400px;
+    min-width: 580px;
 }
 
 .THIS #loginName{
+    margin-right: 5%;
+
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
     font-size: 30px;
 }
 
 .THIS #dataInputs{
     margin-top: 25px;
     display: grid;
-    justify-content: center; 
-    align-items: center;
     width: 100%;
 }
 
@@ -46,7 +45,7 @@
     border-radius: 4px;
     transition: all 0.3s ease 0s;
     transition-duration: 0.6s;
-    padding: 8px;
+    padding: 4px;
 }
 
 .THIS .btnEntrar:hover{
@@ -58,7 +57,7 @@
 }
 
 .THIS #usernameInput, .THIS #passwordInput{
-    width: 400px;
+    width: auto;
     height: 35px;
     border: none;
     border-radius: 3px;
@@ -72,7 +71,11 @@
 }
 
 .THIS .pForgotPassword{
-    margin-left: 270px;
+    margin-left: 40%;
+}
+
+.THIS .pShowPortal{
+    margin-left: 55%;
 }
 
 .THIS .pForgotPassword:hover{
@@ -107,12 +110,18 @@
     }
 
     .THIS #bodyDocument{
-        display: grid;
-        justify-content: center;
-        align-items: center;
         padding: 4rem 2rem;
         background-color: rgb(213, 215, 255);
         border-radius: 1rem;
+        min-width: 380px;
         width: 100%;
     }
+}
+
+.THIS .loading{
+    display: block;
+    position: relative;
+    background: none;
+    border: none;
+    margin: 4%;
 }

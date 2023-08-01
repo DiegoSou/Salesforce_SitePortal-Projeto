@@ -40,41 +40,38 @@
             if(data.response)
             {
                 // autorizado
+                helper.setLocalStorage(component, null, null);
             	
                 let pageName = '';
                 let detail = {};
+                
                 switch (tokenType)
                 {
                     case 'login' :
-                        pageName = 'userInformations';
-                        helper.setupLocalStorage(component.get('v.userId'), component.get('v.userEmail'), userType);
-
+                        pageName = 'PGUserInformations';
+                        
                         detail.userId = component.get('v.userId');
                         detail.userEmail = component.get('v.userEmail');
                         detail.userType = userType;
+
+                        helper.setLocalStorage(component, 'portalInfo', detail);
                         break;
 
                     case 'Redefinir senha' :
-                        pageName = 'definePassword';
+                        pageName = 'PGUserDefinePassword';
             			
                         detail.userName = component.get('v.userName');
                         detail.token = 'verified';
                         detail.userType = userType;
+
                         break;
                 }
                 
-                let backToPageEvent = component.getEvent("backToPage");
-                backToPageEvent.setParams({
-                    pageName : pageName,
-                    detail : detail
-                });
-                backToPageEvent.fire();
+                helper.setAnotherPage(component, pageName, detail);
             }
-    
             else
             {
                 // não autorizado
-                
                 for(let error of data.errors)
                 {
                     switch(error.erroCode)
@@ -93,49 +90,37 @@
     //
     // Outro
     //
-    setupLocalStorage : function(userId, userEmail, userType)
+    setLocalStorage : function(component, key, value)
     {
-        let newLocalStorage = {
-            userId: userId,
-            userEmail: userEmail,
-            userType: userType
-        };
+        let manageLocalStorageEvent = component.getEvent("manageLocalStorage");
 
-        window.localStorage.setItem(
-            'portalInfo',
-            JSON.stringify(newLocalStorage)
-        );
+        manageLocalStorageEvent.setParams({
+            key : key,
+            data : value
+        });
+        
+        manageLocalStorageEvent.fire();
+    },
+    setAnotherPage : function(component, pageName, detail)
+    {
+        let backToPageEvent = component.getEvent("backToPage");
+        
+        backToPageEvent.setParams({
+            pageName : pageName,
+            detail : detail
+        });
+        
+        backToPageEvent.fire();
     },
 
-    resendToken : function(component, helper)
+    successResend : function(component, helper)
     {
-        console.log('stand by');
-
-        // let toast = component.find('toastComponent');
-        // let attmps = component.get('v.resendAttempts');
-
-        // if(attmps >= 3) {
-        //     toast.showToastComponent('warning', 'Você não pode reenviar o token mais de três vezes, contate um administrador.', 5000);
-        //     return;
-        // }
-        
-        // toast.showToastComponent('success', 'Token enviado com sucesso', 3000);
-        // attmps += 1;
-
-        // // Adiciona attempt no atributo do componente
-        // component.set('v.resendAttempts', attmps);
-
-        // // Adiciona attempt no localstorage
-        // window.localStorage.setItem('resendAttempts', attmps);
-        // window.localStorage.resendAttempts = attmps;
-        
-		// console.log(JSON.stringify(window.localStorage));
-        
-        // // Manda evento - resendToken
-        // helper.fireBackToPageEvent(component, 'resendToken', {
-        //     "username" : component.get('v.name'),
-        //     "password" : component.get('v.password'),
-        //     "type" : component.get('v.userType')
-        // });
+        let toast = component.find('toastComponent');
+        toast.showToastComponent('success', 'Token enviado com sucesso', 3000);
+    },
+    failedResend : function(component, helper)
+    {
+        let toast = component.find('toastComponent');
+        toast.showToastComponent('warning', 'Você não pode reenviar o token mais de três vezes, contate um administrador.', 5000);
     }
 })

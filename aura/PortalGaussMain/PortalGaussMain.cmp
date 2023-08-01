@@ -1,5 +1,5 @@
 <aura:component>
-    <!-- Attributes -->
+    <!-- Atributos -->
     <aura:attribute name="localInfo" type="Object" />
 
     <!-- Handlers -->
@@ -7,7 +7,9 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <!-- carregar outra página -->
     <aura:handler name="backToPage" event="c:PGBackToEvent" action="{!c.backToPageEvent}"/>
-
-    <!-- Components -->
+    <!-- controle de local storage -->
+    <aura:handler name="manageLocalStorage" event="c:PGManageLocalStorageEvent" action="{!c.managelocalStorageEvent}"/>
+    
+    <!-- Componentes -->
     <c:PGLoadAnotherPage aura:id="loadAnotherPageComponent"/>
-</aura:component>	
+</aura:component>

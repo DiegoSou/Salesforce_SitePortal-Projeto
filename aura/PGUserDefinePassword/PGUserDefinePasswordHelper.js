@@ -38,11 +38,18 @@
 
             if(data.response)
             {
-                localStorage.clear();
+                // limpar local storage
+                let manageLocalStorageEvent = component.getEvent("manageLocalStorage");
+                manageLocalStorageEvent.setParams({
+                    key : null,
+                    data : null
+                });
+                manageLocalStorageEvent.fire();
 
+                // voltar ao login
                 let backToPageEvent = component.getEvent("backToPage");
                 backToPageEvent.setParams({
-                    pageName : 'userLogin',
+                    pageName : 'PGUserLogin',
                     detail : { userType : userType }
                 });
                 backToPageEvent.fire();

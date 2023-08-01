@@ -52,7 +52,7 @@
                 // Constrói evento
                 let backToPageEvent = component.getEvent("backToPage");
                 backToPageEvent.setParams({
-                    pageName : 'verifyToken',
+                    pageName : 'PGVerifyAccessToken',
                     detail : detail
                 });
                 

@@ -17,7 +17,7 @@
         let userType = component.get('v.userType');
 
         backToPageEvent.setParams({
-            pageName : 'userLogin',
+            pageName : 'PGUserLogin',
             detail : { userType : userType }
         });
 

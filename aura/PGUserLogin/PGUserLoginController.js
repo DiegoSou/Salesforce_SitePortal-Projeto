@@ -34,14 +34,7 @@
         // Encaminha para o outro portal de usuário
         let userType = component.get('v.userType') == 'candidato' ? 'mentor' : 'candidato';
 
-        let backToPageEvent = component.getEvent("backToPage");
-        
-        backToPageEvent.setParams({
-            pageName : 'userLogin',
-            detail : { userType : userType }
-        });
-
-        backToPageEvent.fire();
+        window.location.href = window.location.origin + "/PortalGauss/?page=login&usr=" + userType;
     },
 
     forgotPassword : function(component, event, helper)
@@ -52,7 +45,7 @@
         let backToPageEvent = component.getEvent("backToPage");
         
         backToPageEvent.setParams({
-            pageName : 'forgotPassword',
+            pageName : 'PGUserForgotPassword',
             detail : { userType : userType }
         });
 

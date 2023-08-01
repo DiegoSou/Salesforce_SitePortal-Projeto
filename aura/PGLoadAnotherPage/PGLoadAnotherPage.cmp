@@ -1,31 +1,35 @@
-<!-- Componente para autenticar o usuário, que só vai ser válido se passar por aqui -->
 <aura:component>
+    <!-- Métodos públicos - usados por PortalGaussMain -->
     <aura:method name="loadCmp" description="">
         <aura:attribute name="pageName" type="String" default=""/>
         <aura:attribute name="attributes" type="Object" default="undefined"/>
     </aura:method>
 
+    <!-- Atributos -->
     <aura:attribute name="currentView" type="String"/>
-    <aura:attribute name="details" type="Object"/>
 
-    <!-- desativa display do componente e define um aura id pra ele. -->
-    <aura:if isTrue="{!false}" aura:id="userLogin">
-        <c:PGUserLogin userType="{!v.details.userType}"/>
-    </aura:if>
-
-    <aura:if isTrue="{!false}" aura:id="forgotPassword">
-        <c:PGUserForgotPassword userType="{!v.details.userType}"/>
-    </aura:if>
-
-    <aura:if isTrue="{!false}" aura:id="verifyToken">
-        <c:PGVerifyAccessToken userId="{!v.details.userId}" userName="{!v.details.userName}" userEmail="{!v.details.userEmail}" userPassword="{!v.details.userPassword}" userType="{!v.details.userType}" tokenType="{!v.details.tokenType}"/>
-    </aura:if>
-
-    <aura:if isTrue="{!false}" aura:id="userInformations">
-        <c:PGUserInformations userId="{!v.details.userId}" userEmail="{!v.details.userEmail}" userType="{!v.details.userType}"/>
-    </aura:if>
-
-    <aura:if isTrue="{!false}" aura:id="definePassword">
-        <c:PGDefinePassword token="{!v.details.token}" userType="{!v.details.userType}" userName="{!v.details.userName}"/>
-    </aura:if>
+    <!-- Visualização -->
+    {!v.body}
 </aura:component>
+
+
+<!-- desativa display do componente e define um aura id pra ele. -->
+<!-- <aura:if isTrue="{!false}" aura:id="userLogin">
+    <c:PGUserLogin userType="{!v.details.userType}"/>
+</aura:if>
+
+<aura:if isTrue="{!false}" aura:id="forgotPassword">
+    <c:PGUserForgotPassword userType="{!v.details.userType}"/>
+</aura:if>
+
+<aura:if isTrue="{!false}" aura:id="verifyToken">
+    <c:PGVerifyAccessToken userId="{!v.details.userId}" userName="{!v.details.userName}" userEmail="{!v.details.userEmail}" userPassword="{!v.details.userPassword}" userType="{!v.details.userType}" tokenType="{!v.details.tokenType}"/>
+</aura:if>
+
+<aura:if isTrue="{!false}" aura:id="userInformations">
+    <c:PGUserInformations userId="{!v.details.userId}" userEmail="{!v.details.userEmail}" userType="{!v.details.userType}"/>
+</aura:if>
+
+<aura:if isTrue="{!false}" aura:id="definePassword">
+    <c:PGUserDefinePassword token="{!v.details.token}" userType="{!v.details.userType}" userName="{!v.details.userName}"/>
+</aura:if> -->

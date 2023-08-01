@@ -1,0 +1,14 @@
+<aura:component>
+    <!-- Métodos públicos - usados por PGVerifyAccessToken -->
+    <aura:method name="resendToken" description="" action="{!c.resendToken}">
+        <aura:attribute name="userName" type="String"/>
+        <aura:attribute name="userPassword" type="String"/>
+        <aura:attribute name="userType" type="String"/>
+    </aura:method>
+
+    <!-- Eventos -->
+    <aura:registerEvent name="manageLocalStorage" type="c:PGManageLocalStorageEvent"/>
+    
+    <!-- Componentes -->
+    <c:callService service="PortalUserLogin" aura:id="callServiceLogin"/>
+</aura:component>

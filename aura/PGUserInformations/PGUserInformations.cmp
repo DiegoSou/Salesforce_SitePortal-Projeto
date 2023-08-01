@@ -20,6 +20,7 @@
 
     <!-- Eventos -->
     <aura:registerEvent name="backToPage" type="c:PGBackToEvent"/>
+    <aura:registerEvent name="manageLocalStorage" type="c:PGManageLocalStorageEvent"/>
 
     <!-- Componentes -->
     <c:callService service="Account" aura:id="accountInfor"/>
